@@ -43,7 +43,7 @@ namespace WinformSignalR
 
             // Register to the "broadcastMessage" callback method of the hub
             // This method is invoked by the hub
-            _hubProxy.On<string, string>("broadcastMessage", (channel, msgDataWithImage) => ReceiveMessage(channel, msgDataWithImage));
+            _hubProxy.On<string, string>("broadcastMessage", (channel, msgDataWithImage) => OnMessageReceived(channel, msgDataWithImage));
 
             try
             {
@@ -69,7 +69,7 @@ namespace WinformSignalR
             }
         }
 
-        private void ReceiveMessage(string channel, string msgDataWithImage)
+        private void OnMessageReceived(string channel, string msgDataWithImage)
         {
             if(channel == txtChannel.Text)
             {

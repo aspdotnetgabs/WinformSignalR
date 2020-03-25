@@ -40,7 +40,7 @@ namespace WinformSignalR
 
             // Register to the "broadcastMessage" callback method of the hub
             // This method is invoked by the hub
-            _hubProxy.On<string, string>("broadcastMessage", (name, message) => ReceiveMessage(name, message) );
+            _hubProxy.On<string, string>("broadcastMessage", (name, message) => OnMessageReceived(name, message) );
 
             btnConnect.Enabled = false;
 
@@ -77,7 +77,7 @@ namespace WinformSignalR
             }
         }
 
-        private void ReceiveMessage(string from, string msg)
+        private void OnMessageReceived(string from, string msg)
         {
             listBox1.Items.Add($"{from}: {msg}");
         }
